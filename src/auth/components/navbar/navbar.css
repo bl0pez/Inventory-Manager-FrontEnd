@@ -1,0 +1,13 @@
+.active{
+    width: #fff;
+}
+
+@media (max-width:768px){
+    .navBar{
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+    }
+    
+    .navBarActive{
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+}
