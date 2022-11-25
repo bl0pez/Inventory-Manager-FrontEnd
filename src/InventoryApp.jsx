@@ -1,10 +1,10 @@
 import { BrowserRouter } from 'react-router-dom';
-import { AuthRouter } from './auth/router/AuthRouter';
+import { AppRouter } from './router/AppRouter';
 
 export const InventoryApp = () => {
   return (
     <BrowserRouter>
-      <AuthRouter />
+      <AppRouter />
     </BrowserRouter>
   )
 }

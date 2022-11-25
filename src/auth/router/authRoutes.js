@@ -1,6 +1,6 @@
 import { Login, Register } from '../pages';
 
-export const routes = [
+export const authRoutes = [
     {
         path: "login",
         element: Login
