@@ -1,8 +1,12 @@
-import { Dashboard } from '../pages';
+import { AddProduct, Dashboard } from '../pages';
 
 export const inventoryRoutes = [
     {
-        path: "dashboard",
+        path: "",
         element: Dashboard
     },
+    {
+        path: "addProduct",
+        element: AddProduct
+    }
 ]

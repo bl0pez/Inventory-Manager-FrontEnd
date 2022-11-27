@@ -6,11 +6,11 @@ export const AppRouter = () => {
   return (
     <Routes>
 
-        <Route path="" element={ <InventoryLayout />}>
+        <Route path="*" element={ <InventoryLayout />}>
             {
-                inventoryRoutes.map((route) => {
-                    <Route key={route.path} index element={route.element} />
-                })
+                inventoryRoutes.map(route => (
+                    <Route key={route.path} path={route.path} element={<route.element />} />
+                ))
             }
         </Route>
 

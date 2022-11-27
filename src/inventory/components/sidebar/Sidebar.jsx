@@ -1,25 +1,106 @@
-import { NavLink } from "react-router-dom"
-import { dashboardRoutes } from "./navigation"
+import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
+import { dashboardRoutes } from './navigation';
 
 export const Sidebar = () => {
+
+  const [open, setOpen] = useState(true);
+
+  const widthOpen = open ? 'w-64' : 'w-16';
+  const displayOpen = open ? 'block' : 'hidden';
+
   return (
-    <div className="bg-neutral-900 w-60 p-3 flex flex-col text-white">
-        <div className="flex items-center justify-center gap-2 px-1 py-3">
-            <i className="fas fa-boxes-alt"></i>
-            <span className="text-neutral-100 text-lg">Inventory</span>
-        </div>
-        <div className="flex-1">
-          {
-            // This is the sidebar menu
-            dashboardRoutes.map((item) => (
-              <NavLink key={item.name} className="text-xl flex items-center gap-2 font-light px-3 py-2 hover:bg-neutral-700  rounded-sm text-base">
-                <i className={item.icon}></i>
-                <span className="">{ item.name }</span>
-              </NavLink>
-            ))
+    <aside
+      className={
+        `sidebar
+        sidebar-transition
+        ${widthOpen}
+      `
+      }
+    >
+
+      <div
+        className={
+          `sidebar-header
+          sidebar-transition 
+          ${widthOpen}
+        `
+        }
+      >
+        <h2
+          className={
+            `text-2xl font-bold
+              sidebar-transition 
+            ${displayOpen}
+          `
           }
-        </div>
-        <div>Botton part</div>
-    </div>
+
+        >InventoryApp</h2>
+        <button
+          onClick={() => setOpen(!open)}
+          className="w-12 h-12 bg-indigo-900 rounded-lg shadow-lg"
+        >
+          <i className="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <nav
+        className='flex flex-col items-center mt-8 flex-1'
+      >
+        {
+          dashboardRoutes.map((route, index) => (
+            <NavLink
+              key={index}
+              to={route.path}
+              className={
+                `h-12 my-2 bg-indigo-900 rounded-lg
+                overflow-hidden 
+                shadow-lg flex
+               items-center text-xl gap-4 px-4
+               sidebar-transition 
+               ${open ? 'justify-self-end w-52' : 'justify-center w-12'}`
+              }
+              style={({ isActive }) => isActive ? {
+                backgroundColor: '#4F46E5'
+              } : { backgroundColor: '' }}
+            >
+              <i className={`${route.icon}`}></i>
+              <span
+                className={
+                  `text-sm font-bold
+                  sidebar-transition 
+                  ${displayOpen}
+                `
+                }
+              >
+                {route.name}
+              </span>
+            </NavLink>
+          )
+          )
+        }
+      </nav>
+
+      <button
+        className={
+          `sidebar-icon__loagout
+          sidebar-transition
+           ${open ? 'justify-self-end w-52' : 'justify-center w-12'}`
+        }
+      >
+        <i className="fas fa-sign-out-alt"></i>
+        <span
+          className={
+            `text-sm font-bold
+                  transition-all duration-500 ease-linear
+                  ${displayOpen}
+                  `
+          }
+        >
+          Logout
+        </span>
+      </button>
+
+    </aside>
   )
 }
